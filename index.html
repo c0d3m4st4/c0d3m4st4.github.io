@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+	<html lang="en">	
+  	<head>
+    	<title>Online Xploit Host by c0d3m4st4 - Offline mode</title>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		<link rel="icon" type="image/x-icon" href="favicon.ico">		
+		
+		<script>
+		
+			var userAgent = navigator.userAgent;
+		
+			if (!(localStorage.getItem("offlineAppInstalled") === null)) {
+				if (userAgent.indexOf("PlayStation 4 6.72") != -1) {
+					window.location.replace("ps4_672_offline_index.html");
+				} else if ((userAgent.indexOf("PlayStation 4 5.05") != -1) || (userAgent.indexOf("PlayStation 4 5.07") != -1)){
+					window.location.replace("ps4_505_offline_index.html");	
+				} else if (userAgent.indexOf("PlayStation 4 4.55") != -1) {
+					window.location.replace("ps4_455_offline_index.html");	
+				}							
+			}else{
+				if (userAgent.indexOf("PlayStation 4 6.72") != -1) {
+					window.location.replace("ps4_672_index.html");
+				} else if ((userAgent.indexOf("PlayStation 4 5.05") != -1) || (userAgent.indexOf("PlayStation 4 5.07") != -1)){
+					window.location.replace("ps4_505_index.html");	
+				} else if (userAgent.indexOf("PlayStation 4 4.55") != -1) {
+					window.location.replace("ps4_455_index.html");	
+				}			
+			}
+
+		</script>		
+		
+  	</head>
+	
+  	<body>
+
+	</body>
+	
+</html>
