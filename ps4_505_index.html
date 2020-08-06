@@ -329,37 +329,6 @@
 				
 				setNegativeTheme(bNegativeTheme);
 				
-				$.ajax({
-					url: '/getVersion',
-					dataType : 'json',
-					type:  'get',
-					success:  function (response) {			
-						$("#version").html(response.version);
-					},
-					error: function(){ // will fire when timeout is reached
-						$("#version").html("ERROR");
-					},
-					timeout: 5000 // sets timeout to 5 seconds
-				});			
-
-				$.ajax({
-					url: '/getCustom',
-					dataType : 'json',
-					type:  'get',
-					success:  function (response) {			
-						if (response.custom_payload != "") {
-							exploitInfo["Custom"] = exploitInfo["Custom"] + "<br><br>Currently set to " + response.custom_payload;
-						}else{
-							exploitInfo["Custom"] = exploitInfo["Custom"] + "<br><br>Currently UNSET";
-						}
-					},
-					error: function(){ // will fire when timeout is reached
-						exploitInfo["Custom"] = exploitInfo["Custom"] + "<br><br>Error reading custom payload settings.";
-					},
-					timeout: 5000 // sets timeout to 5 seconds
-				});	
-				
-				
 			});
 
 			function beep() {
@@ -406,84 +375,7 @@
 					);				
 				}
 			}			
-			
-			function getSDContents(sdpathqs){
-			
-				if (sdpathqs=="") {
-					sdpath = "/sdcard";
-				}else{
-					sdpath = "/sdcard?path=" + sdpathqs;
-				}
-			
-				$.ajax({
-						url: sdpath,
-						dataType : 'json',
-						type:  'get',
-						beforeSend: function () {
-							$("#exploitInfo").html("Retrieving SD content, please wait...");
-						},
-						success:  function (response) {
-						
-							var SDCardOptions = "";
-						
-							for (var entry in response.entries) {
-							
-								var menuOption = "";
-								
-								if (response.entries[entry]['type']=="dir") {
-									menuOption = SDmenuOptionTemplate.replace("{SD_MENU_OPTION_NAME}", entry);
-									menuOption = menuOption.replace("{SD_MENU_OPTION_INDEX}", "javascript:void(0);");
-									menuOption = menuOption.replace("{SD_MENU_OPTION_SVG}", iconSVGDirectory);
-									menuOption = menuOption.replace("{SD_MENU_OPTION_AJAX}", "onclick=getSDContents('" + response.entries[entry]['path'] + "');");
-								}else if (response.entries[entry]['type']=="file") {
-									menuOption = SDmenuOptionTemplate.replace("{SD_MENU_OPTION_NAME}", entry.substring(0,entry.lastIndexOf(".")));
-									menuOption = menuOption.replace("{SD_MENU_OPTION_INDEX}", "sdcard/" + response.entries[entry]['path']);
-									if (response.entries[entry]['extension'].toLowerCase().endsWith(".gz")) {
-										menuOption = menuOption.replace("{SD_MENU_OPTION_SVG}", iconSVGGZFile);
-									}else if (response.entries[entry]['extension'].toLowerCase().endsWith(".html")) {
-										menuOption = menuOption.replace("{SD_MENU_OPTION_SVG}", iconSVGHTMLFile);
-									}else if (response.entries[entry]['extension'].toLowerCase().endsWith(".bin")) {
-										menuOption = menuOption.replace("{SD_MENU_OPTION_SVG}", iconSVGBINFile);
-									}else{
-										menuOption = menuOption.replace("{SD_MENU_OPTION_SVG}", iconSVGFile);
-									}
-									//menuOption = menuOption.replace("{SD_MENU_OPTION_SVG}", iconSVGFile);
-									menuOption = menuOption.replace("{SD_MENU_OPTION_AJAX}", "");									
-								}
-								
-								SDCardOptions += menuOption;								
-							}
-
-							if (SDCardOptions=="") {
-								alert("Directory is empty");
-							}else{
-							
-								var owl = $('.owl-carousel');
-								$('.owl-carousel').trigger('replace.owl.carousel', SDCardOptions).trigger('refresh.owl.carousel');
-								$('.owl-carousel').trigger('to.owl.carousel', 0);
-								$('#infoWrapper').css("display","none");
-								//$('header h2').append(" - SD card menu");
-								$('header h2').html("SD card menu - /sdcard/" + sdpathqs);
-								
-								if (sdpath=="/sdcard") {
-									$('footer').html("<div id='back'><a href='ps4_505_index.html'><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M12 2C6.5 2 2 6.5 2 12 2 17.5 6.5 22 12 22 17.5 22 22 17.5 22 12 22 6.5 17.5 2 12 2zM12 4C16.4 4 20 7.6 20 12 20 16.4 16.4 20 12 20 7.6 20 4 16.4 4 12 4 7.6 7.6 4 12 4zM11.3 6.3L6.3 11.3 5.6 12 6.3 12.7 11.3 17.7 12.7 16.3 9.4 13 18 13 18 11 9.4 11 12.7 7.7 11.3 6.3z\" font-family=\"Sans\" style=\"-inkscape-font-specification:Sans;block-progression:tb;line-height:normal;text-align:start;text-indent:0;text-transform:none\"/></svg></a></div>");							
-								}else{
-									var backPath = sdpathqs.substring(0,sdpathqs.lastIndexOf("/"));
-									$('footer').html("<div id='back'><a href=\"javascript:void(0);\" onclick=\"getSDContents('" + backPath + "');\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M12 2C6.5 2 2 6.5 2 12 2 17.5 6.5 22 12 22 17.5 22 22 17.5 22 12 22 6.5 17.5 2 12 2zM12 4C16.4 4 20 7.6 20 12 20 16.4 16.4 20 12 20 7.6 20 4 16.4 4 12 4 7.6 7.6 4 12 4zM11.3 6.3L6.3 11.3 5.6 12 6.3 12.7 11.3 17.7 12.7 16.3 9.4 13 18 13 18 11 9.4 11 12.7 7.7 11.3 6.3z\" font-family=\"Sans\" style=\"-inkscape-font-specification:Sans;block-progression:tb;line-height:normal;text-align:start;text-indent:0;text-transform:none\"/></svg></a></div>");
-								}
-								
-								$('footer').append("@c0d3m4st4 - &copy;2018");								
-								
-							}
-							 
-						},
-						error: function(){ // will fire when timeout is reached
-							$("#exploitInfo").html("Error retrieving SD content!!! Please check your network connection and make sure SD card is inserted. ");
-						},
-						timeout: 5000 // sets timeout to 5 seconds
-				});
-				
-			}			
+									
 			
 			var exploitInfo = {
 				"hen-213":"SiSTRo's HEN 2.1.3 with VR support and 7.02 version spoof<br><br>Features:<br><ul><li>Debug Settings</li><li>External HDD Support (including HDD Format 7.xx Support)</li><li>Remote Package Install</li><li>Rest Mode Support</li><li>Debug Trophies Support</li><li>sys_dynlib_dlsym Patch</li><li>UART and Remote Play Enabler</li><li>Never Disable Screenshot</li></ul>",
