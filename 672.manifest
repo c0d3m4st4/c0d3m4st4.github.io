@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# ESP8266XplitHost v2.84d - 6.72
+# ESP8266XplitHost v2.84d - 6.72 - update1
 index.html
 ps4_672_offline_index.html
 ps4_672_index.html
@@ -25,6 +25,8 @@ ps4_672_index.html
 672_mira_payload.js
 672_enable_upd_payload.js
 672_disable_upd_payload.js
+672_mira_alt1_index.html
+672_jb_c-code_alt1.js
 favicon.ico
 jquery-3.3.1.min.js
 owl.carousel.min.css
