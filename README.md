@@ -23,6 +23,7 @@ Exploits and payloads code
 - [CelesteBlue](https://github.com/CelesteBlue-dev)
 - [Specter](https://github.com/Cryptogenic)
 - [Stooged ](https://github.com/stooged)
+- [flatz] (https://github.com/flatz)
 - [Al-Azif ](https://github.com/Al-Azif)
 - [OpenOrbis ](https://github.com/OpenOrbis)
 - [sleirsgoevy](https://github.com/sleirsgoevy)
