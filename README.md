@@ -27,3 +27,5 @@ Exploits and payloads code
 - [Al-Azif ](https://github.com/Al-Azif)
 - [OpenOrbis ](https://github.com/OpenOrbis)
 - [sleirsgoevy](https://github.com/sleirsgoevy)
+- [notzecoxao](https://github.com/zecoxao)
+- [Zer0xFF](https://github.com/Zer0xFF)
