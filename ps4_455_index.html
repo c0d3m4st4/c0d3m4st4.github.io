@@ -299,6 +299,19 @@
 					setNegativeTheme(true);
 				}	
 				
+				$.ajax({
+					url: 'version.json',
+					dataType : 'json',
+					type:  'get',
+					success:  function (response) {			
+						$("#version").html(response.version);
+					},
+					error: function(){ // will fire when timeout is reached
+						$("#version").html("ERROR");
+					},
+					timeout: 5000 // sets timeout to 5 seconds
+				});				
+				
 			});
 
 			function setNegativeTheme(bNegative) {
@@ -371,7 +384,7 @@
 			<h2>Playstation 4 - FW 4.55</h2>
   		</header>
   		<main>
-			<div class="corner-ribbon top-right sticky blue">2.84d</div>
+			<div id="version" class="corner-ribbon top-right sticky blue"></div>
 			<div class="owl-carousel" id="exploits_455">
 				<div class="divExploitOption"><div class="divMenuHeader">xvtx-HEN</div><div class="divMenuBody"><a href="455_xvtx_hen_index.html"><svg onmouseover="showInfo('Xvortex-HEN');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"><path d="M400 0h-66.7c-55.1 0-100 44.9-100 100v100H25c-13.7 0-25 11.3-25 25v250c0 13.8 11.3 25 25 25h283.3c13.8 0 25-11.2 25-25V225c0-13.7-11.2-25-25-25H300V100c0-18.4 15-33.3 33.3-33.3H400c18.4 0 33.3 15 33.3 33.3v100H500V100C500 44.9 455.1 0 400 0zM200 433.3h-66.7l14.5-72.5c-8.8-6-14.5-16.1-14.5-27.5 0-18.4 14.9-33.3 33.3-33.3S200 314.9 200 333.3c0 11.4-5.7 21.5-14.5 27.5L200 433.3z"/></svg></a></div></div>
 				<div class="divExploitOption"><div class="divMenuHeader">xvtx-HEN v1</div><div class="divMenuBody"><a href="455_xvtx_hen_v1_index.html"><svg onmouseover="showInfo('Xvortex-HEN-v1');" onmouseout="clearInfo();" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" height="500" width="500"><path d="m47.7 100.6h16.3l12.7 38 12.7-38h16.4L85.6 155.6H67.7Z"/><path d="m117.6 139.8h17.9V82.5l-18.4 4.3V71.2l18.3-4.3h19.3v72.9h17.9v15.8H117.6Z"/><path d="m400 0h-66.7c-55.1 0-100 44.9-100 100V200H25C11.3 200 0 211.3 0 225v250c0 13.8 11.3 25 25 25h283.3c13.8 0 25-11.2 25-25V225c0-13.7-11.2-25-25-25H300V100c0-18.4 15-33.3 33.3-33.3H400c18.4 0 33.3 15 33.3 33.3V200H500V100C500 44.9 455.1 0 400 0ZM200 433.3h-66.7l14.5-72.5c-8.8-6-14.5-16.1-14.5-27.5 0-18.4 14.9-33.3 33.3-33.3 18.4 0 33.3 14.9 33.3 33.3 0 11.4-5.7 21.5-14.5 27.5z"/></svg></a></div></div>				
