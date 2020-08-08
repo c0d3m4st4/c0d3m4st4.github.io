@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# ESP8266XplitHost v2.83a - 5.05
+# ESP8266XplitHost - 5.05
 505_app2usb_index.html
 505_dbsgbackup_index.html
 505_dbrestore_index.html
@@ -14,3 +14,4 @@ ps4_505_offline_index.html
 ps4_505_index.html
 index.html
 click.mp4
+version.json
