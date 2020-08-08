@@ -1,0 +1,31 @@
+<html>
+<head>
+	<script>
+		function load_mira() {
+			document.write('<script src="672_mira_loader.js"><\/scr' + 'ipt><script src="672_sistro_hen.js"><\/scr' + 'ipt><script src="672_mira_c-code.js"><\/scr' + 'ipt><script>mira_finished();<\/scr' + 'ipt>');
+		}
+	
+		function mira_finished() {
+			document.write("<h1 style='color:blue;font-size: 45px;'>HEN payload loaded! All done! <br> Exit this window using the PS button. <br> Enjoy :P</h1>");
+			//read_ptr_at(0);
+		}
+
+		function check_jb_finished() {
+			if (main_ret == 179 || main_ret == 0) {
+				document.write("<h1 style='color:blue;font-size: 45px;'>Exploit done! Loading HEN payload...</h1>");
+				//read_ptr_at(0);	
+				setTimeout(function(){ load_mira() }, 2000);
+			} else {
+				document.write("<h1 style='color:red;font-size: 45px;'>Exploit failed! <br> Reboot your PS4 and try again.</h1>");
+			}
+		}		
+	</script>	 
+		
+</head>
+
+<body>
+	<script>
+		document.write('<script src="672_exploit.js"><\/scr' + 'ipt><script src="672_helpers.js"><\/scr' + 'ipt><script src="672_malloc.js"><\/scr' + 'ipt><script src="672_rop.js"><\/scr' + 'ipt><script src="672_syscalls.js"><\/scr' + 'ipt><script src="672_jb_c-code.js"><\/scr' + 'ipt><script>check_jb_finished();<\/scr' + 'ipt>');
+	</script>
+</body>
+</html>
